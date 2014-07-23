@@ -15,10 +15,6 @@ require('./util')(dependencies).init(app, function (err) {
         throw err;
     }
 
-    // Handlebar templating engine used
-    app.engine('hb', require('handlebars').compile);
-
-
     // Parse POST data
     app.use(bodyParser.urlencoded({
         extended: true

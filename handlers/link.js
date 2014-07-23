@@ -1,10 +1,7 @@
 module.exports = function (deps) {
     var countTags = require('../lib/countTags')(),
         express   = require('express'),
-        router    = express.Router(),
-        shortId   = require('shortid');
-
-    var collection = deps.db.collection('links');
+        router    = express.Router();
 
 
     /**
@@ -50,7 +47,6 @@ module.exports = function (deps) {
 
             var pageData = {
                 'url': url,
-                'link': shortId.generate(),
                 'tagCount': data
             };
 
@@ -62,11 +58,6 @@ module.exports = function (deps) {
                         .then(function (output) {
                             res.send(output);
                         });
-                })
-                .then(function () {
-                    collection.insert(pageData, function (err, doc) {
-                            // Do nothing yet
-                    });
                 })
                 .catch(function (err) {
                     res.send(err);
