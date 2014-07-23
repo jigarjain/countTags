@@ -1,6 +1,8 @@
 module.exports = function (deps) {
-    var express = require('express'),
-        router  = express.Router();
+    var countTags = require('../lib/countTags')(),
+        express   = require('express'),
+        router    = express.Router();
+
 
     /**
      * Looks for Get request
@@ -31,7 +33,40 @@ module.exports = function (deps) {
     });
 
     router.post('/', function (req, res) {
-        res.send(req.body);
+        var url = req.body.url;
+
+        if(url) {
+            countTags.parse(url, function (err, data){
+            if(err) {
+                throw err;
+            }
+
+            var opts = {
+                'title': 'Results'
+            };
+
+            var pageData = {
+                'url': url,
+                'tagCount': data
+            };
+
+            var file= 'result.tmpl';
+
+            deps.util.layout.subcontent(file, pageData)
+                .then(function(subcontent){
+                    return deps.util.layout.master(subcontent, opts)
+                        .then(function (output) {
+                            res.send(output);
+                        });
+                })
+                .catch(function (err) {
+                    res.send(err);
+                });
+            });
+        } else {
+            res.send('No Url');
+        }
+
     });
 
     return router;

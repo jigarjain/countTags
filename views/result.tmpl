@@ -1,0 +1,16 @@
+<h4>Result for: {{url}}</h4>
+
+<table>
+    <thead>
+        <th>Tag</th>
+        <th>Count</th>
+    <thead>
+    <tbody>
+        {{#each tagCount}}
+            <tr>
+                <td>{{tag}}</td>
+                <td>{{count}}</td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
