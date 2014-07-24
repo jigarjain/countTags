@@ -20,6 +20,9 @@ require('./util')(dependencies).init(app, function (err) {
         extended: true
     }));
 
+    // Static files
+    app.use('/statics', express.static(config.paths.static));
+
 
     // Routes defined here
     var handlers = [

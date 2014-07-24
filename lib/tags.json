@@ -1,0 +1,458 @@
+[
+    {
+        "name": "a",
+        "html5": true
+    },
+    {
+        "name": "abbr",
+        "html5": true
+    },
+    {
+        "name": "address",
+        "html5": true
+    },
+    {
+        "name": "area",
+        "html5": true
+    },
+    {
+        "name": "article",
+        "html5": true
+    },
+    {
+        "name": "aside",
+        "html5": true
+    },
+    {
+        "name": "audio",
+        "html5": true
+    },
+    {
+        "name": "b",
+        "html5": true
+    },
+    {
+        "name": "base",
+        "html5": true
+    },
+    {
+        "name": "bdi",
+        "html5": true
+    },
+    {
+        "name": "bdo",
+        "html5": true
+    },
+    {
+        "name": "blockquote",
+        "html5": true
+    },
+    {
+        "name": "body",
+        "html5": true
+    },
+    {
+        "name": "br",
+        "html5": true
+    },
+    {
+        "name": "button",
+        "html5": true
+    },
+    {
+        "name": "canvas",
+        "html5": true
+    },
+    {
+        "name": "caption",
+        "html5": true
+    },
+    {
+        "name": "cite",
+        "html5": true
+    },
+    {
+        "name": "code",
+        "html5": true
+    },
+    {
+        "name": "col",
+        "html5": true
+    },
+    {
+        "name": "colgroup",
+        "html5": true
+    },
+    {
+        "name": "data",
+        "html5": true
+    },
+    {
+        "name": "datalist",
+        "html5": true
+    },
+    {
+        "name": "dd",
+        "html5": true
+    },
+    {
+        "name": "del",
+        "html5": true
+    },
+    {
+        "name": "details",
+        "html5": true
+    },
+    {
+        "name": "dfn",
+        "html5": true
+    },
+    {
+        "name": "dialog",
+        "html5": true
+    },
+    {
+        "name": "div",
+        "html5": true
+    },
+    {
+        "name": "dl",
+        "html5": true
+    },
+    {
+        "name": "dt",
+        "html5": true
+    },
+    {
+        "name": "em",
+        "html5": true
+    },
+    {
+        "name": "embed",
+        "html5": true
+    },
+    {
+        "name": "fieldset",
+        "html5": true
+    },
+    {
+        "name": "figcaptio",
+        "html5": true
+    },
+    {
+        "name": "figure",
+        "html5": true
+    },
+    {
+        "name": "footer",
+        "html5": true
+    },
+    {
+        "name": "form",
+        "html5": true
+    },
+    {
+        "name": "h1",
+        "html5": true
+    },
+    {
+        "name": "h2",
+        "html5": true
+    },
+    {
+        "name": "h3",
+        "html5": true
+    },
+    {
+        "name": "h4",
+        "html5": true
+    },
+    {
+        "name": "h5",
+        "html5": true
+    },
+    {
+        "name": "h6",
+        "html5": true
+    },
+    {
+        "name": "head",
+        "html5": true
+    },
+    {
+        "name": "header",
+        "html5": true
+    },
+    {
+        "name": "hgroup",
+        "html5": true
+    },
+    {
+        "name": "hr",
+        "html5": true
+    },
+    {
+        "name": "html",
+        "html5": true
+    },
+    {
+        "name": "i",
+        "html5": true
+    },
+    {
+        "name": "iframe",
+        "html5": true
+    },
+    {
+        "name": "img",
+        "html5": true
+    },
+    {
+        "name": "input",
+        "html5": true
+    },
+    {
+        "name": "ins",
+        "html5": true
+    },
+    {
+        "name": "kbd",
+        "html5": true
+    },
+    {
+        "name": "keygen",
+        "html5": true
+    },
+    {
+        "name": "label",
+        "html5": true
+    },
+    {
+        "name": "legend",
+        "html5": true
+    },
+    {
+        "name": "li",
+        "html5": true
+    },
+    {
+        "name": "link",
+        "html5": true
+    },
+    {
+        "name": "main",
+        "html5": true
+    },
+    {
+        "name": "map",
+        "html5": true
+    },
+    {
+        "name": "mark",
+        "html5": true
+    },
+    {
+        "name": "menu",
+        "html5": true
+    },
+    {
+        "name": "menuitem",
+        "html5": true
+    },
+    {
+        "name": "meta",
+        "html5": true
+    },
+    {
+        "name": "meter",
+        "html5": true
+    },
+    {
+        "name": "nav",
+        "html5": true
+    },
+    {
+        "name": "noscript",
+        "html5": true
+    },
+    {
+        "name": "object",
+        "html5": true
+    },
+    {
+        "name": "ol",
+        "html5": true
+    },
+    {
+        "name": "optgroup",
+        "html5": true
+    },
+    {
+        "name": "option",
+        "html5": true
+    },
+    {
+        "name": "output",
+        "html5": true
+    },
+    {
+        "name": "p",
+        "html5": true
+    },
+    {
+        "name": "param",
+        "html5": true
+    },
+    {
+        "name": "pre",
+        "html5": true
+    },
+    {
+        "name": "progress",
+        "html5": true
+    },
+    {
+        "name": "q",
+        "html5": true
+    },
+    {
+        "name": "rb",
+        "html5": true
+    },
+    {
+        "name": "rp",
+        "html5": true
+    },
+    {
+        "name": "rt",
+        "html5": true
+    },
+    {
+        "name": "rtc",
+        "html5": true
+    },
+    {
+        "name": "ruby",
+        "html5": true
+    },
+    {
+        "name": "s",
+        "html5": true
+    },
+    {
+        "name": "samp",
+        "html5": true
+    },
+    {
+        "name": "script",
+        "html5": true
+    },
+    {
+        "name": "section",
+        "html5": true
+    },
+    {
+        "name": "select",
+        "html5": true
+    },
+    {
+        "name": "small",
+        "html5": true
+    },
+    {
+        "name": "source",
+        "html5": true
+    },
+    {
+        "name": "span",
+        "html5": true
+    },
+    {
+        "name": "strong",
+        "html5": true
+    },
+    {
+        "name": "style",
+        "html5": true
+    },
+    {
+        "name": "sub",
+        "html5": true
+    },
+    {
+        "name": "summary",
+        "html5": true
+    },
+    {
+        "name": "sup",
+        "html5": true
+    },
+    {
+        "name": "table",
+        "html5": true
+    },
+    {
+        "name": "tbody",
+        "html5": true
+    },
+    {
+        "name": "td",
+        "html5": true
+    },
+    {
+        "name": "template",
+        "html5": true
+    },
+    {
+        "name": "textarea",
+        "html5": true
+    },
+    {
+        "name": "tfoot",
+        "html5": true
+    },
+    {
+        "name": "th",
+        "html5": true
+    },
+    {
+        "name": "thead",
+        "html5": true
+    },
+    {
+        "name": "time",
+        "html5": true
+    },
+    {
+        "name": "title",
+        "html5": true
+    },
+    {
+        "name": "tr",
+        "html5": true
+    },
+    {
+        "name": "track",
+        "html5": true
+    },
+    {
+        "name": "u",
+        "html5": true
+    },
+    {
+        "name": "ul",
+        "html5": true
+    },
+    {
+        "name": "var",
+        "html5": true
+    },
+    {
+        "name": "video",
+        "html5": true
+    },
+    {
+        "name": "wbr",
+        "html5": true
+    }
+]

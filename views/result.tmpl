@@ -1,16 +1,25 @@
-<h4>Result for: {{url}}</h4>
 
-<table>
-    <thead>
-        <th>Tag</th>
-        <th>Count</th>
-    <thead>
-    <tbody>
-        {{#each tagCount}}
-            <tr>
-                <td>{{tag}}</td>
-                <td>{{count}}</td>
-            </tr>
-        {{/each}}
-    </tbody>
-</table>
+<div class="row result-page">
+    <div class="small-12 medium-8 medium-centered large-8 large-centered columns">
+        <h4>Result for: {{url}}</h4>
+        <table>
+            <thead>
+                <th>Tag</th>
+                <th>Type</th>
+                <th>Count</th>
+            <thead>
+            <tbody>
+
+            {{#each tagCount}}
+                <tr>
+                    <td>{{tag}}</td>
+                    <td>{{#if html5}}<span class="label success radius">HTML5</span>{{/if}}</td>
+                    <td>{{count}}</td>
+                </tr>
+            {{/each}}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
