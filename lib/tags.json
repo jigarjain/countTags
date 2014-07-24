@@ -1,11 +1,11 @@
 [
     {
         "name": "a",
-        "html5": true
+        "html5": false
     },
     {
         "name": "abbr",
-        "html5": true
+        "html5": false
     },
     {
         "name": "address",
@@ -13,7 +13,7 @@
     },
     {
         "name": "area",
-        "html5": true
+        "html5": false
     },
     {
         "name": "article",
@@ -29,11 +29,11 @@
     },
     {
         "name": "b",
-        "html5": true
+        "html5": false
     },
     {
         "name": "base",
-        "html5": true
+        "html5": false
     },
     {
         "name": "bdi",
@@ -41,23 +41,23 @@
     },
     {
         "name": "bdo",
-        "html5": true
+        "html5": false
     },
     {
         "name": "blockquote",
-        "html5": true
+        "html5": false
     },
     {
         "name": "body",
-        "html5": true
+        "html5": false
     },
     {
         "name": "br",
-        "html5": true
+        "html5": false
     },
     {
         "name": "button",
-        "html5": true
+        "html5": false
     },
     {
         "name": "canvas",
@@ -65,23 +65,23 @@
     },
     {
         "name": "caption",
-        "html5": true
+        "html5": false
     },
     {
         "name": "cite",
-        "html5": true
+        "html5": false
     },
     {
         "name": "code",
-        "html5": true
+        "html5": false
     },
     {
         "name": "col",
-        "html5": true
+        "html5": false
     },
     {
         "name": "colgroup",
-        "html5": true
+        "html5": false
     },
     {
         "name": "data",
@@ -93,11 +93,11 @@
     },
     {
         "name": "dd",
-        "html5": true
+        "html5": false
     },
     {
         "name": "del",
-        "html5": true
+        "html5": false
     },
     {
         "name": "details",
@@ -105,27 +105,27 @@
     },
     {
         "name": "dfn",
-        "html5": true
+        "html5": false
     },
     {
         "name": "dialog",
-        "html5": true
+        "html5": false
     },
     {
         "name": "div",
-        "html5": true
+        "html5": false
     },
     {
         "name": "dl",
-        "html5": true
+        "html5": false
     },
     {
         "name": "dt",
-        "html5": true
+        "html5": false
     },
     {
         "name": "em",
-        "html5": true
+        "html5": false
     },
     {
         "name": "embed",
@@ -133,10 +133,10 @@
     },
     {
         "name": "fieldset",
-        "html5": true
+        "html5": false
     },
     {
-        "name": "figcaptio",
+        "name": "figcaption",
         "html5": true
     },
     {
@@ -149,35 +149,35 @@
     },
     {
         "name": "form",
-        "html5": true
+        "html5": false
     },
     {
         "name": "h1",
-        "html5": true
+        "html5": false
     },
     {
         "name": "h2",
-        "html5": true
+        "html5": false
     },
     {
         "name": "h3",
-        "html5": true
+        "html5": false
     },
     {
         "name": "h4",
-        "html5": true
+        "html5": false
     },
     {
         "name": "h5",
-        "html5": true
+        "html5": false
     },
     {
         "name": "h6",
-        "html5": true
+        "html5": false
     },
     {
         "name": "head",
-        "html5": true
+        "html5": false
     },
     {
         "name": "header",
@@ -185,39 +185,39 @@
     },
     {
         "name": "hgroup",
-        "html5": true
+        "html5": false
     },
     {
         "name": "hr",
-        "html5": true
+        "html5": false
     },
     {
         "name": "html",
-        "html5": true
+        "html5": false
     },
     {
         "name": "i",
-        "html5": true
+        "html5": false
     },
     {
         "name": "iframe",
-        "html5": true
+        "html5": false
     },
     {
         "name": "img",
-        "html5": true
+        "html5": false
     },
     {
         "name": "input",
-        "html5": true
+        "html5": false
     },
     {
         "name": "ins",
-        "html5": true
+        "html5": false
     },
     {
         "name": "kbd",
-        "html5": true
+        "html5": false
     },
     {
         "name": "keygen",
@@ -225,19 +225,19 @@
     },
     {
         "name": "label",
-        "html5": true
+        "html5": false
     },
     {
         "name": "legend",
-        "html5": true
+        "html5": false
     },
     {
         "name": "li",
-        "html5": true
+        "html5": false
     },
     {
         "name": "link",
-        "html5": true
+        "html5": false
     },
     {
         "name": "main",
@@ -245,10 +245,14 @@
     },
     {
         "name": "map",
-        "html5": true
+        "html5": false
     },
     {
         "name": "mark",
+        "html5": true
+    },
+    {
+        "name": "math",
         "html5": true
     },
     {
@@ -261,7 +265,7 @@
     },
     {
         "name": "meta",
-        "html5": true
+        "html5": false
     },
     {
         "name": "meter",
@@ -273,23 +277,23 @@
     },
     {
         "name": "noscript",
-        "html5": true
+        "html5": false
     },
     {
         "name": "object",
-        "html5": true
+        "html5": false
     },
     {
         "name": "ol",
-        "html5": true
+        "html5": false
     },
     {
         "name": "optgroup",
-        "html5": true
+        "html5": false
     },
     {
         "name": "option",
-        "html5": true
+        "html5": false
     },
     {
         "name": "output",
@@ -297,15 +301,15 @@
     },
     {
         "name": "p",
-        "html5": true
+        "html5": false
     },
     {
         "name": "param",
-        "html5": true
+        "html5": false
     },
     {
         "name": "pre",
-        "html5": true
+        "html5": false
     },
     {
         "name": "progress",
@@ -313,11 +317,11 @@
     },
     {
         "name": "q",
-        "html5": true
+        "html5": false
     },
     {
         "name": "rb",
-        "html5": true
+        "html5": false
     },
     {
         "name": "rp",
@@ -329,7 +333,7 @@
     },
     {
         "name": "rtc",
-        "html5": true
+        "html5": false
     },
     {
         "name": "ruby",
@@ -337,15 +341,15 @@
     },
     {
         "name": "s",
-        "html5": true
+        "html5": false
     },
     {
         "name": "samp",
-        "html5": true
+        "html5": false
     },
     {
         "name": "script",
-        "html5": true
+        "html5": false
     },
     {
         "name": "section",
@@ -353,11 +357,11 @@
     },
     {
         "name": "select",
-        "html5": true
+        "html5": false
     },
     {
         "name": "small",
-        "html5": true
+        "html5": false
     },
     {
         "name": "source",
@@ -365,19 +369,19 @@
     },
     {
         "name": "span",
-        "html5": true
+        "html5": false
     },
     {
         "name": "strong",
-        "html5": true
+        "html5": false
     },
     {
         "name": "style",
-        "html5": true
+        "html5": false
     },
     {
         "name": "sub",
-        "html5": true
+        "html5": false
     },
     {
         "name": "summary",
@@ -385,19 +389,23 @@
     },
     {
         "name": "sup",
+        "html5": false
+    },
+    {
+        "name": "svg",
         "html5": true
     },
     {
         "name": "table",
-        "html5": true
+        "html5": false
     },
     {
         "name": "tbody",
-        "html5": true
+        "html5": false
     },
     {
         "name": "td",
-        "html5": true
+        "html5": false
     },
     {
         "name": "template",
@@ -405,19 +413,19 @@
     },
     {
         "name": "textarea",
-        "html5": true
+        "html5": false
     },
     {
         "name": "tfoot",
-        "html5": true
+        "html5": false
     },
     {
         "name": "th",
-        "html5": true
+        "html5": false
     },
     {
         "name": "thead",
-        "html5": true
+        "html5": false
     },
     {
         "name": "time",
@@ -425,11 +433,11 @@
     },
     {
         "name": "title",
-        "html5": true
+        "html5": false
     },
     {
         "name": "tr",
-        "html5": true
+        "html5": false
     },
     {
         "name": "track",
@@ -437,15 +445,15 @@
     },
     {
         "name": "u",
-        "html5": true
+        "html5": false
     },
     {
         "name": "ul",
-        "html5": true
+        "html5": false
     },
     {
         "name": "var",
-        "html5": true
+        "html5": false
     },
     {
         "name": "video",
