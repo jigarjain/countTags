@@ -34,14 +34,11 @@ require('./util')(dependencies).init(app, function (err) {
     ];
 
     _.each(handlers, function (h) {
+        console.log('loop');
         app.use(h.mount, require(h.file)(dependencies));
     });
 
-    // 404
-    app.use(function(req, res) {
-        return dependencies.util.response.notfound();
-    });
 
-    // listen on port
-    app.listen(3000);
+    // listen on port from config
+    app.listen(config.server.port);
 });

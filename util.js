@@ -128,7 +128,7 @@ module.exports = function (deps) {
                 data.content = content;
 
                 // title
-                data.title       = ('title' in opts ? opts.title + ' | ' : '') + 'CountTags';
+                data.title       = ('title' in opts ? opts.title : 'countTags') ;
 
                 // css
                 if ('css' in opts) {
@@ -167,24 +167,6 @@ module.exports = function (deps) {
         }
     };
 
-    var response = {
-        'notfound': function () {
-            _res.status(404);
-            var opt = {
-                'title': 'You lost bro?',
-            };
-
-            var file = 'templates/_404.tmpl';
-
-            deps.util.layout.subcontent(file, {})
-                .then(function(subcontent){
-                    return deps.util.layout.master(subcontent, opts)
-                        .then(function (output) {
-                            res.send(output);
-                        });
-                });
-        }
-    };
 
     function init(app, callback) {
         precompile(function (err) {
@@ -199,8 +181,7 @@ module.exports = function (deps) {
             });
 
             deps.util = {
-                'layout'  : layout,
-                'response': response
+                'layout'  : layout
             };
 
             callback(null);

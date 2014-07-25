@@ -8,10 +8,9 @@ module.exports = function (deps) {
 
 
     /**
-     * Looks for Get request
+     * Looks for GET request (Home page)
      */
     router.get('/', function (req, res) {
-
         var opts = {
             'title': 'Count Tags',
             'baseurl': deps.cfg.baseurl
@@ -19,7 +18,7 @@ module.exports = function (deps) {
 
         var file = 'index.tmpl';
 
-        deps.util.layout.subcontent(file, pageData)
+        deps.util.layout.subcontent(file, {})
             .then(function(subcontent){
                 return deps.util.layout.master(subcontent, opts)
                     .then(function (output) {
@@ -32,7 +31,11 @@ module.exports = function (deps) {
             });
     });
 
+    /**
+     * Looks for POST request (URL submission)
+     */
     router.post('/', function (req, res) {
+        
         var url = req.body.url;
         var op = {};
         if(url) {
@@ -46,24 +49,53 @@ module.exports = function (deps) {
                 } else {
                     var dbData = {
                         'url': url,
-                        'shortLink': shortId.generate(),
                         'tagCount': data
                     };
-
-                    collection.insert(dbData, function (err, doc) {
+                    collection.findOne({
+                        url: dbData.url
+                    }, function(err, doc) {
                         if(err) {
-                            op = {
-                                code: 0,
-                                msg: 'Something went wrong'
-                            };
-                        } else {
-                            op = {
-                                code: 1,
-                                url: dbData.shortLink
-                            };
+                            throw err;
                         }
-                        res.send(op);
-                    });
+
+                        if(doc !== null) {
+                            collection.update(
+                                {url  : dbData.url}, 
+                                {$set : dbData},
+                                function (err, uDoc) {
+                                    if(err) {
+                                        op = {
+                                            code: 0,
+                                            msg: 'Something went wrong'
+                                        };
+                                    } else {
+                                        op = {
+                                            code: 1,
+                                            url: doc.shortLink
+                                        };
+                                    }
+                                    res.send(op);
+                            });
+                        } else {
+                            dbData.shortLink = shortId.generate(),
+                            collection.insert(
+                                dbData,
+                                function (err, iDoc) {
+                                    if(err) {
+                                        op = {
+                                            code: 0,
+                                            msg: 'Something went wrong'
+                                        };
+                                    } else {
+                                        op = {
+                                            code: 1,
+                                            url: dbData.shortLink
+                                        };
+                                    }
+                                    res.send(op);
+                            });
+                        }
+                    })
                 }
             });
         } else {
@@ -76,14 +108,30 @@ module.exports = function (deps) {
         }
     });
 
+    /**
+     * Looks for GET request (Result Page)
+     */
     router.get('/:shortLink', function(req, res) {
         var shortLink = req.params.shortLink;
-
         collection.findOne({
             shortLink: shortLink
         }, function (err, doc) {
             if(err || doc === null) {
-                res.send('404');
+                 var opt = {
+                    'title': 'You lost bro?',
+                };
+                res.status(404);
+                var file = 'templates/_404.tmpl';
+                deps.util.layout.subcontent(file, {})
+                    .then(function(subcontent){
+                        return deps.util.layout.master(subcontent, opts)
+                            .then(function (output) {
+                                res.send(output);
+                            });
+                    })
+                    .catch(function (err) {
+                        res.send(err);
+                    });
             } else {
                 var opts = {
                     'title': 'CountTags',
@@ -117,7 +165,6 @@ module.exports = function (deps) {
             }
         });
     });
-
 
     return router;
 };
