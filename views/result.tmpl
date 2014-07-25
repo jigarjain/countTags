@@ -1,25 +1,38 @@
 
 <div class="row result-page">
     <div class="small-12 medium-8 medium-centered large-8 large-centered columns">
-        <h4>Result for: {{url}}</h4>
-        <table>
-            <thead>
-                <th>Tag</th>
-                <th>Type</th>
-                <th>Count</th>
-            <thead>
-            <tbody>
+        <h4>Result for: <a href="{{url}}" class="tested-url">{{url}}</a></h4>
 
+
+        <div class="row">
+            <div class="small-8 columns permalink">
+                <i class="fa fa-link"></i> Permalink: {{shareLink}}
+            </div>
+            <div class="small-4 columns">
+                <input type="text" placeholder="Search.." class="filter">
+            </div>
+        </div>
+
+        <table class="footable" data-filter=".filter" data-page-navigation="#pagination" data-page-size="10">
+            <thead>
+                <tr>
+                    <th data-sort-initial="true" class="text-center">Tag</th>
+                    <th data-type="numeric" class="text-center">Type</th>
+                    <th data-type="numeric" class="text-center">Count</th>
+                </tr>
+            </thead>
+            <tbody>
             {{#each tagCount}}
                 <tr>
-                    <td>{{tag}}</td>
-                    <td>{{#if html5}}<span class="label success radius">HTML5</span>{{/if}}</td>
-                    <td>{{count}}</td>
+                    <td class="text-left">{{tag}}</td>
+                    <td class="text-center" data-value="{{#if html5}}1{{else}}0{{/if}}">{{#if html5}}<i class="fa fa-html5"></i>{{/if}}</td>
+                    <td class="text-right">{{count}}</td>
                 </tr>
             {{/each}}
-
             </tbody>
         </table>
+        <div class="text-right">
+            <ul id="pagination" class="footable-nav pagination"></ul>
+        </div>
     </div>
 </div>
-

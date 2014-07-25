@@ -11,6 +11,10 @@ module.exports = function (deps) {
             {
                 'name': 'master',
                 'path': __dirname + '/views/templates/master.tmpl'
+            },
+            {
+                'name': '_tag',
+                'path': __dirname + '/views/templates/_tag.tmpl'
             }
         ];
 
@@ -25,6 +29,81 @@ module.exports = function (deps) {
                 }
             });
         }, callback);
+    }
+
+    function objToKeyval(obj) {
+        return _.collect(obj, function (val, key) {
+            return {'key': key, 'val': val};
+        });
+    }
+
+    function renderCSSTags(csstags) {
+        var out = '';
+
+        if (typeof csstags === 'string') {
+            out = out + templates._tag({
+                'name': 'link',
+                'opts': objToKeyval({
+                    'rel': 'stylesheet',
+                    'href': csstags
+                }),
+                'selfclose': true
+            });
+        } else {
+            _.each(csstags, function (css) {
+                if (typeof css === 'string') {
+                    out = out + templates._tag({
+                        'name': 'link',
+                        'opts': objToKeyval({
+                            'rel': 'stylesheet',
+                            'href': css
+                        }),
+                        'selfclose': true
+                    });
+                } else {
+                    out = out + templates._tag({
+                        'name': 'link',
+                        'opts': objToKeyval(css),
+                        'selfclose': true
+                    });
+                }
+            });
+        }
+
+        return out;
+    }
+
+    function renderJSTags(jstags) {
+        var out = '';
+
+        if (typeof jstags === 'string') {
+            out = out + templates._tag({
+                'name': 'script',
+                'opts': objToKeyval({
+                    'type': 'text/javascript',
+                    'src': jstags
+                })
+            });
+        } else {
+            _.each(jstags, function (js) {
+                if (typeof js === 'string') {
+                    out = out + templates._tag({
+                        'name': 'script',
+                        'opts': objToKeyval({
+                            'type': 'text/javascript',
+                            'src': js
+                        })
+                    });
+                } else {
+                    out = out + templates._tag({
+                        'name': 'script',
+                        'opts': objToKeyval(js)
+                    });
+                }
+            });
+        }
+
+        return out;
     }
 
     var layout = {
@@ -43,10 +122,7 @@ module.exports = function (deps) {
                     opts = {};
                 }
 
-                var data = {
-                    'css'      : '',
-                    'js'       : ''
-                };
+                var data = {};
 
                 // content
                 data.content = content;
@@ -54,8 +130,15 @@ module.exports = function (deps) {
                 // title
                 data.title       = ('title' in opts ? opts.title + ' | ' : '') + 'CountTags';
 
-                // description
-                data.description = 'description' in opts ? opts.description : '';
+                // css
+                if ('css' in opts) {
+                    data.css = renderCSSTags(opts.css);
+                }
+
+                // js
+                if ('js' in opts) {
+                    data.js = renderJSTags(opts.js);
+                }
 
                 // render
                 resolve(templates.master(data));
@@ -85,25 +168,21 @@ module.exports = function (deps) {
     };
 
     var response = {
-        'error': function (err) {
-            _res.status(500);
-            _res.send(layout.master('500 Error', {
-                'title': 'Error'
-            }));
-        },
-
-        'forbidden': function (err) {
-            _res.status(403);
-            _res.send(layout.master('403 Error', {
-                'title': 'Forbidden'
-            }));
-        },
-
         'notfound': function () {
             _res.status(404);
-            _res.send(layout.master('404 Error', {
-                'title': 'Not found'
-            }));
+            var opt = {
+                'title': 'You lost bro?',
+            };
+
+            var file = 'templates/_404.tmpl';
+
+            deps.util.layout.subcontent(file, {})
+                .then(function(subcontent){
+                    return deps.util.layout.master(subcontent, opts)
+                        .then(function (output) {
+                            res.send(output);
+                        });
+                });
         }
     };
 

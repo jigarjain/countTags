@@ -13,11 +13,8 @@ module.exports = function (deps) {
     router.get('/', function (req, res) {
 
         var opts = {
-            'title': 'Home'
-        };
-
-        var pageData = {
-            'heading' : 'This is heading'
+            'title': 'Count Tags',
+            'baseurl': deps.cfg.baseurl
         };
 
         var file = 'index.tmpl';
@@ -89,12 +86,23 @@ module.exports = function (deps) {
                 res.send('404');
             } else {
                 var opts = {
-                    'title': 'Results'
+                    'title': 'CountTags',
+                    'baseurl': deps.cfg.baseurl,
+                    'js': [
+                        deps.cfg.baseurl + '/statics/thirdparty/footable/js/footable.js',
+                        deps.cfg.baseurl + '/statics/thirdparty/footable/js/footable.sortable.js',
+                        deps.cfg.baseurl + '/statics/thirdparty/footable/js/footable.paginate.js',
+                        deps.cfg.baseurl + '/statics/thirdparty/footable/js/footable.filter.js',
+                    ],
+                    'css' : [
+                        deps.cfg.baseurl + '/statics/thirdparty/footable/css/footable.sortable-0.1.css',
+                    ]
                 };
 
                 var pageData = doc;
+                pageData.shareLink = deps.cfg.baseurl + '/' + doc.shortLink;
 
-                var file= 'result.tmpl';
+                var file = 'result.tmpl';
 
                 deps.util.layout.subcontent(file, pageData)
                     .then(function(subcontent){

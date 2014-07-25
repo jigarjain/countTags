@@ -1,5 +1,6 @@
 module.exports = {
     'env'         : 'development',
+    'baseurl'     : '',
     'mongo'       : 'countTags',
     'session': {
         'secret': 'countTags220714',

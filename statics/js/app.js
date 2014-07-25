@@ -2,10 +2,12 @@ $(document).ready(function() {
 
     $(document).foundation();
 
-    $('.checkUrl').click(function () {
+    $('.url-form').on('valid.fndtn.abide', function() {
+
         var url = $('.url').val();
 
-        if(url.length !==0) {
+        if(url.length !== 0) {
+            $('.url-form').find('button').html('<i class="fa fa-spin fa-spinner"></i> Fetching')
             $.ajax({
                 url: "/",
                 method: 'POST',
@@ -22,4 +24,9 @@ $(document).ready(function() {
             alert('type URL');
         }
     });
+
+    if ($.fn.footable && $('.footable').length !== 0) {
+         $('.footable').footable();
+    }
+
 });

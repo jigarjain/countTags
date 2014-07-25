@@ -1,4 +1,4 @@
-var bodyParser = require('body-parser');
+var bodyParser = require('body-parser'),
     express    = require('express'),
     config     = require('./config'),
     mongojs    = require('mongojs'),
@@ -6,7 +6,8 @@ var bodyParser = require('body-parser');
     app        = express();
 
 var dependencies = {
-    db : mongojs(config.mongo)
+    db : mongojs(config.mongo),
+    cfg : config
 };
 
 // Initiliaze Utils
@@ -21,19 +22,24 @@ require('./util')(dependencies).init(app, function (err) {
     }));
 
     // Static files
-    app.use('/statics', express.static(config.paths.static));
+    app.use(config.baseurl + '/statics', express.static(config.paths.static));
 
 
     // Routes defined here
     var handlers = [
         {
-            'mount': '/',
+            'mount': config.baseurl + '/',
             'file' : __dirname + '/handlers/home.js'
         }
     ];
 
     _.each(handlers, function (h) {
         app.use(h.mount, require(h.file)(dependencies));
+    });
+
+    // 404
+    app.use(function(req, res) {
+        return dependencies.util.response.notfound();
     });
 
     // listen on port

@@ -1,17 +1,18 @@
 
 <div class="row index-page">
+    <h2 class="text-center">Reduce your Web Page To Numbers</h2>
     <div class="small-12 medium-8 medium-centered large-6 large-centered columns">
-        <form method="post">
+        <form method="post" data-abide="ajax" class="url-form">
             <div class="row">
                 <div class="small-12 columns">
-                    <div class="row collapse">
-                        <div class="small-9 columns">
-                            <input type="url" placeholder="http://google.com/" required class="url">
-                        </div>
-                        <div class="small-3 columns">
-                            <a class="button success postfix checkUrl">Count</a>
-                        </div>
-                    </div>
+                   <input type="url" placeholder="http://google.com/" required class="url">
+                   <small class="error">Valid URL is required my friend</small>
+                </div>
+            </div>
+
+            <div class="row cta">
+                <div class="small-12 columns text-center">
+                   <button type="submit" class="button success radius">Reduce</button>
                 </div>
             </div>
         </form>
