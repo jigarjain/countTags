@@ -34,7 +34,6 @@ require('./util')(dependencies).init(app, function (err) {
     ];
 
     _.each(handlers, function (h) {
-        console.log('loop');
         app.use(h.mount, require(h.file)(dependencies));
     });
 
