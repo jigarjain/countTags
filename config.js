@@ -1,15 +1,13 @@
 module.exports = {
-    'env'         : 'development',
-    'baseurl'     : '',
-    'mongo'       : 'countTags',
-    'session': {
-        'secret': 'countTags220714',
-        'mongo' : 'sess_countTags'
+    'env' : 'development',
+    'baseurl' : '',
+    'mongo' : {
+        'db' : 'countTags'
     },
-    'paths': {
-        'static': __dirname + '/statics'
+    'paths' : {
+        'static' : __dirname + '/statics'
     },
-    'server': {
-        'port': 3000
+    'server' : {
+        'port' : 3000
     }
 };

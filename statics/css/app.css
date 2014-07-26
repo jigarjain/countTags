@@ -1,115 +1,105 @@
-
-body {
-    font-family: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 16px;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Varela Round', "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-.top-bar {
-    background-color: #16a085;
-    height: 60px;
-}
-
-.top-bar .name h1 a {
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 60px;
-}
-
-.top-bar .name h1 a .fa {
-    font-size: 30px;
-    line-height: 60px;
-}
-
-.button.success, .button.success:hover, .button.success:focus {
-    background-color: #16a085;
-    font-weight: bold;
-}
-
-[data-abide] .error small.error, [data-abide] .error span.error, [data-abide] span.error, [data-abide] small.error {
-    background-color: #e74c3c;
-    font-style: normal;
-}
-
-
 /** Common CSS **/
+body {
+  font-family: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Varela Round', "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 .main-content {
-    margin-top: 50px !important;
+  margin-top: 50px !important;
 }
-
-.fa-html5{
-    color: #E44D26;
+.fa-html5 {
+  color: #E44D26;
 }
-
 .error-msg {
-    color: #e74c3c;
+  color: #e74c3c;
 }
-
-
+/** Foundation Overrides **/
+.top-bar {
+  background-color: #16a085;
+  height: 60px;
+}
+.top-bar .name a {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 60px;
+}
+.top-bar .name a .fa {
+  font-size: 30px;
+  line-height: 60px;
+}
+.button.success,
+.button.success:hover,
+.button.success:focus {
+  background-color: #16a085;
+  font-weight: bold;
+}
+[data-abide] .error small.error,
+[data-abide] .error span.error,
+[data-abide] span.error,
+[data-abide] small.error {
+  background-color: #e74c3c;
+  font-style: normal;
+}
 /** Home Page **/
 .index-page h2 {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
 }
-
 .index-page .cta {
-    padding-top: 30px;
+  padding-top: 30px;
 }
-
 /** Result Page **/
 .result-page .tested-url {
-    font-size: 16px;
+  font-size: 16px;
 }
-
 .result-page .permalink {
-    color: #85939B;
-    font-size: 14px;
-    line-height: 30px;
+  color: #85939B;
+  font-size: 14px;
+  line-height: 30px;
 }
-
-.result-page .filter{
-    height: 30px;
+.result-page .filter {
+  height: 30px;
 }
-
 .result-page table {
-    width: 100%;
-    border-radius: 5px;
+  width: 100%;
+  border-radius: 5px;
 }
-
 .result-page table th {
-    width: 33.33%;
+  width: 33.33%;
 }
-
 .result-page table td {
-    font-size: 16px;
-    line-height: 24px;
+  font-size: 16px;
+  line-height: 24px;
 }
-
-
-
+/** 404 **/
+.page-404 {
+  margin-top: 50px;
+  text-align: center;
+}
+.page-404 .fa {
+  font-size: 80px;
+  line-height: 150px;
+  color: #bdc3c7;
+}
+.page-404 h2 {
+  color: #bdc3c7;
+}
+/** Footer **/
+footer {
+  padding: 20px;
+}
 /** Footable Pagination **/
 ul.pagination {
-    float: right;
+  float: right;
 }
-.footable-page-current a, .footable-page-current a:hover {
-    background-color: #16A085 !important;
-    color: #FFF !important;
-}
-
-/** 404 **/
-.404-page {
-    margin-top: 100px;
-    text-align: center;
-}
-
-.404-page .fa-code {
-    font-size: 60px;
-    color: #85939B;
-}
-
-
-footer {
-    padding: 20px;
+.footable-page-current a,
+.footable-page-current a:hover {
+  background-color: #16a085 !important;
+  color: #FFF !important;
 }

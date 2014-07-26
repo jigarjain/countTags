@@ -1,31 +1,36 @@
 var bodyParser = require('body-parser'),
-    express    = require('express'),
     config     = require('./config'),
-    mongojs    = require('mongojs'),
+    express    = require('express'),
     _          = require('lodash'),
+    mongojs    = require('mongojs'),
     app        = express();
 
+
+// Set Dependencies
 var dependencies = {
-    db : mongojs(config.mongo),
+    db : mongojs(config.mongo.db),
     cfg : config
 };
 
-// Initiliaze Utils
+
+// Initiliaze Utils Function
 require('./util')(dependencies).init(app, function (err) {
     if (err) {
         throw err;
     }
 
-    // Parse POST data
+
+    // Parse POST data through bodyParser
     app.use(bodyParser.urlencoded({
         extended: true
     }));
 
-    // Static files
+
+    // Static files Serve Directly
     app.use(config.baseurl + '/statics', express.static(config.paths.static));
 
 
-    // Routes defined here
+    // Declare Mounting Points
     var handlers = [
         {
             'mount': config.baseurl + '/',
@@ -33,6 +38,7 @@ require('./util')(dependencies).init(app, function (err) {
         }
     ];
 
+    // Create use for each Mounting point
     _.each(handlers, function (h) {
         app.use(h.mount, require(h.file)(dependencies));
     });

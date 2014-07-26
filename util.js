@@ -1,11 +1,19 @@
 module.exports = function (deps) {
-    var handlebars = require('handlebars'),
-        async      = require('async'),
+    var async      = require('async'),
         fs         = require('fs'),
+        handlebars = require('handlebars'),
         _          = require('lodash'),
-        templates  = {},
-        _req, _res;
+        templates  = {};
 
+    /**
+     * Precompiles all the common template files once everytime the server
+     * is started
+     *
+     * @param  {Function} callback Function to call when templates are compiled
+     *
+     * @return {Callback()}        Callback function is called. Errors if any
+     *                             are passed
+     */
     function precompile(callback) {
         var sources = [
             {
@@ -24,7 +32,6 @@ module.exports = function (deps) {
                     callback(err);
                 } else {
                     templates[tmpl.name] = handlebars.compile(data);
-
                     callback();
                 }
             });
@@ -37,6 +44,13 @@ module.exports = function (deps) {
         });
     }
 
+    /**
+     * Generates CSS Link Tags
+     *
+     * @param  {Mixed} csstags String or Array of CSS file paths
+     *
+     * @return {String}        String of link tags with CSS paths
+     */
     function renderCSSTags(csstags) {
         var out = '';
 
@@ -73,6 +87,13 @@ module.exports = function (deps) {
         return out;
     }
 
+    /**
+     * Generate JS Script Tags
+     *
+     * @param  {Mixed} jstags String or Array of JS file paths
+     *
+     * @return {String}       String of script tags with JS paths
+     */
     function renderJSTags(jstags) {
         var out = '';
 
@@ -157,7 +178,7 @@ module.exports = function (deps) {
             return new Promise(function (resolve, reject) {
                 fs.readFile(__dirname + '/views/'+ file, 'utf-8', function (err, fileContents) {
                     if (err) {
-                        reject(err);
+                        return reject(err);
                     }
 
                     var tmpl = handlebars.compile(fileContents);
@@ -171,14 +192,8 @@ module.exports = function (deps) {
     function init(app, callback) {
         precompile(function (err) {
             if (err) {
-                callback(err);
+                return callback(err);
             }
-
-            app.use(function (req, res, next) {
-                _req = req;
-                _res = res;
-                next();
-            });
 
             deps.util = {
                 'layout'  : layout

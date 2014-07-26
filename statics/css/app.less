@@ -1,0 +1,130 @@
+@primary-font   : 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
+@secondary-font : 'Varela Round', "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+@primary-color : #16a085;
+@error-color   : #e74c3c;
+
+/** Common CSS **/
+
+body {
+    font-family: @primary-font;
+    font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: @secondary-font;
+}
+
+.main-content {
+    margin-top: 50px !important;
+}
+
+.fa-html5{
+    color: #E44D26;
+}
+
+.error-msg {
+    color: @error-color;
+}
+
+/** Foundation Overrides **/
+.top-bar {
+    background-color: @primary-color;
+    height: 60px;
+
+    .name a {
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 60px;
+
+        .fa {
+            font-size: 30px;
+            line-height: 60px;
+        }
+    }
+}
+
+.button.success, .button.success:hover, .button.success:focus {
+    background-color: @primary-color;
+    font-weight: bold;
+}
+
+[data-abide] .error small.error, [data-abide] .error span.error, [data-abide] span.error, [data-abide] small.error {
+    background-color: @error-color;
+    font-style: normal;
+}
+
+
+/** Home Page **/
+.index-page {
+    h2 {
+        margin-bottom: 50px;
+    }
+
+    .cta {
+        padding-top: 30px;
+    }
+}
+
+
+/** Result Page **/
+.result-page {
+    .tested-url {
+        font-size: 16px;
+    }
+
+    .permalink {
+        color: #85939B;
+        font-size: 14px;
+        line-height: 30px;
+    }
+
+    .filter {
+        height: 30px;
+    }
+
+    table {
+        width: 100%;
+        border-radius: 5px;
+
+        th {
+            width: 33.33%;
+        }
+
+        td {
+            font-size: 16px;
+            line-height: 24px;
+        }
+    }
+}
+
+/** 404 **/
+.page-404 {
+    margin-top:50px;
+    text-align: center;
+
+    .fa {
+        font-size: 80px;
+        line-height: 150px;
+        color: #bdc3c7;
+    }
+
+    h2 {
+        color: #bdc3c7
+    }
+}
+
+/** Footer **/
+footer {
+    padding: 20px;
+}
+
+/** Footable Pagination **/
+ul.pagination {
+    float: right;
+}
+
+.footable-page-current a, .footable-page-current a:hover {
+    background-color: @primary-color !important;
+    color: #FFF !important;
+}

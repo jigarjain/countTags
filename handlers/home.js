@@ -1,14 +1,13 @@
 module.exports = function (deps) {
-    var countTags = require('../lib/countTags')(),
-        express   = require('express'),
-        router    = express.Router(),
-        shortId   = require('shortid');
-
-    var collection = deps.db.collection('links');
+    var countTags  = require('../lib/countTags')(),
+        express    = require('express'),
+        shortId    = require('shortid'),
+        router     = express.Router(),
+        collection = deps.db.collection(' ');
 
 
     /**
-     * Looks for GET request (Home page)
+     * Serves HomePage on GET request
      */
     router.get('/', function (req, res) {
         var opts = {
@@ -35,7 +34,6 @@ module.exports = function (deps) {
      * Looks for POST request (URL submission)
      */
     router.post('/', function (req, res) {
-        
         var url = req.body.url;
         var op = {};
         if(url) {
@@ -51,16 +49,19 @@ module.exports = function (deps) {
                         'url': url,
                         'tagCount': data
                     };
+
                     collection.findOne({
                         url: dbData.url
                     }, function(err, doc) {
+
                         if(err) {
                             throw err;
                         }
 
                         if(doc !== null) {
+                            // Same URL already exist. Hence Update
                             collection.update(
-                                {url  : dbData.url}, 
+                                {url  : dbData.url},
                                 {$set : dbData},
                                 function (err, uDoc) {
                                     if(err) {
@@ -77,7 +78,8 @@ module.exports = function (deps) {
                                     res.send(op);
                             });
                         } else {
-                            dbData.shortLink = shortId.generate(),
+                            // New URL, So Insert
+                            dbData.shortLink = shortId.generate();
                             collection.insert(
                                 dbData,
                                 function (err, iDoc) {
@@ -95,7 +97,7 @@ module.exports = function (deps) {
                                     res.send(op);
                             });
                         }
-                    })
+                    });
                 }
             });
         } else {
@@ -103,7 +105,6 @@ module.exports = function (deps) {
                 code: 0,
                 msg: 'No Url specified'
             };
-
             res.send(op);
         }
     });
@@ -113,15 +114,19 @@ module.exports = function (deps) {
      */
     router.get('/:shortLink', function(req, res) {
         var shortLink = req.params.shortLink;
+        var file      = null;
+
         collection.findOne({
             shortLink: shortLink
         }, function (err, doc) {
             if(err || doc === null) {
-                 var opt = {
+                var opt = {
                     'title': 'You lost bro?',
                 };
+                file    = 'templates/_404.tmpl';
+
                 res.status(404);
-                var file = 'templates/_404.tmpl';
+
                 deps.util.layout.subcontent(file, {})
                     .then(function(subcontent){
                         return deps.util.layout.master(subcontent, opts)
@@ -132,6 +137,7 @@ module.exports = function (deps) {
                     .catch(function (err) {
                         res.send(err);
                     });
+
             } else {
                 var opts = {
                     'title': 'CountTags',
@@ -147,10 +153,9 @@ module.exports = function (deps) {
                     ]
                 };
 
-                var pageData = doc;
+                var pageData       = doc;
                 pageData.shareLink = deps.cfg.baseurl + '/' + doc.shortLink;
-
-                var file = 'result.tmpl';
+                file               = 'result.tmpl';
 
                 deps.util.layout.subcontent(file, pageData)
                     .then(function(subcontent){
