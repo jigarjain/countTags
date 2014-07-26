@@ -1,6 +1,7 @@
 module.exports = {
     'env' : 'development',
     'baseurl' : '',
+    'mainurl' : 'http://54.191.205.94:3000',
     'mongo' : {
         'db' : 'countTags'
     },

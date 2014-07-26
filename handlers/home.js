@@ -3,7 +3,7 @@ module.exports = function (deps) {
         express    = require('express'),
         shortId    = require('shortid'),
         router     = express.Router(),
-        collection = deps.db.collection(' ');
+        collection = deps.db.collection('links');
 
 
     /**
@@ -154,7 +154,7 @@ module.exports = function (deps) {
                 };
 
                 var pageData       = doc;
-                pageData.shareLink = deps.cfg.baseurl + '/' + doc.shortLink;
+                pageData.shareLink = deps.cfg.mainurl + '/' + doc.shortLink;
                 file               = 'result.tmpl';
 
                 deps.util.layout.subcontent(file, pageData)
