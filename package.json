@@ -1,7 +1,7 @@
 {
     "name" : "countTags",
-    "version" : "1.0.0",
-    "description" : "Parse a web page & get a count of all the HTML tags from",
+    "version" : "0.0.1",
+    "description" : "Parse a web page & get a count of all the HTML tags from it",
     "main" : "index.js",
     "scripts" : {
         "start" : "node index.js"
