@@ -70,12 +70,10 @@ h6 {
   width: 100%;
   border-radius: 5px;
 }
-.result-page table th {
-  width: 33.33%;
-}
 .result-page table td {
   font-size: 16px;
   line-height: 24px;
+  vertical-align: top;
 }
 /** 404 **/
 .page-404 {

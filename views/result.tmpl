@@ -1,6 +1,6 @@
 
 <div class="row result-page">
-    <div class="small-12 medium-8 medium-centered large-8 large-centered columns">
+    <div class="small-12 columns">
         <h4>Result for: <a href="{{url}}" target="_blank" class="tested-url">{{url}}</a></h4>
 
         <div class="row">
@@ -15,9 +15,11 @@
         <table class="footable" data-filter=".filter" data-page-navigation="#pagination" data-page-size="10">
             <thead>
                 <tr>
-                    <th data-sort-initial="true" class="text-center">Tag</th>
-                    <th data-type="numeric" class="text-center">Type</th>
-                    <th data-type="numeric" class="text-center">Count</th>
+                    <th width="15%" class="text-center">Tag</th>
+                    <th width="15%" data-type="numeric" class="text-center">Type</th>
+                    <th width="15%" data-sort-initial="descending" data-type="numeric" class="text-center">Count</th>
+                    <th width="30%" data-sort-ignore="true">.Classes</th>
+                    <th width="30%" data-sort-ignore="true">#Ids</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,6 +28,8 @@
                     <td class="text-left">{{tag}}</td>
                     <td class="text-center" data-value="{{#if html5}}1{{else}}0{{/if}}">{{#if html5}}<i class="fa fa-html5"></i>{{/if}}</td>
                     <td class="text-right">{{count}}</td>
+                    <td>{{classes}}</td>
+                    <td>{{ids}}</td>
                 </tr>
             {{/each}}
             </tbody>

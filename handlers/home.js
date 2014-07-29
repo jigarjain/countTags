@@ -1,6 +1,7 @@
 module.exports = function (deps) {
     var countTags  = require('../lib/countTags')(),
         express    = require('express'),
+        _          = require('lodash'),
         shortId    = require('shortid'),
         router     = express.Router(),
         collection = deps.db.collection('links');
@@ -156,6 +157,11 @@ module.exports = function (deps) {
                 var pageData       = doc;
                 pageData.shareLink = deps.cfg.mainurl + '/' + doc.shortLink;
                 file               = 'result.tmpl';
+
+                _.forEach(pageData.tagCount, function(item, index) {
+                    pageData.tagCount[index].classes = item.classes.join(', ');
+                    pageData.tagCount[index].ids = item.ids.join(', ');
+                });
 
                 deps.util.layout.subcontent(file, pageData)
                     .then(function(subcontent){
