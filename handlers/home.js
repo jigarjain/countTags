@@ -38,8 +38,9 @@ module.exports = function (deps) {
 
             var link = new links.Link();
             link.parseUrl = req.body.url;
-            link.parsedHtml = yield countTags.parse(link.parseUrl);
-
+            var result = yield countTags.parse(link.parseUrl);
+            link.parsedHtml = result[0];
+            link.parsedCss = result[1];
             yield links.Repo.add(link);
 
             op = {

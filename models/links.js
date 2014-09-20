@@ -9,8 +9,8 @@
         this.updateTime = null;
         this.parseUrl = null;
         this.slug = null;
-        this.parsedHtml = {};
-        this.parsedCss = {};
+        this.parsedHtml = [];
+        this.parsedCss = [];
     }
 
     Link.prototype = {
@@ -30,8 +30,9 @@
             .then(function (fetched) {
                 return new Promise(function (resolve, reject) {
                     if (fetched) {
-                        link =  _.extend(link, fetched);
-                        link.touch();
+                        delete link._id;
+                        link.slug = fetched.slug;
+
                         coll.update(
                             {parseUrl  : link.parseUrl},
                             {$set : link},

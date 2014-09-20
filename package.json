@@ -18,6 +18,7 @@
     "cheerio": "^0.17.0",
     "co-express": "^1.0.0",
     "compression": "^1.1.0",
+    "css": "^2.1.0",
     "express": "~4.4.5",
     "express-handlebars": "^1.1.0",
     "handlebars": "^2.0.0-alpha.4",
