@@ -6,7 +6,8 @@ module.exports = {
         'db' : 'countTags'
     },
     'paths' : {
-        'static' : __dirname + '/statics'
+        'static' : __dirname + '/statics',
+        'layout' : __dirname + '/views/layout'
     },
     'server' : {
         'port' : 3000

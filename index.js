@@ -1,6 +1,8 @@
 var bodyParser = require('body-parser'),
     config     = require('./config'),
+    compress   = require('compression'),
     express    = require('express'),
+    exphbs     = require('express-handlebars'),
     _          = require('lodash'),
     mongojs    = require('mongojs'),
     app        = express();
@@ -13,37 +15,51 @@ var dependencies = {
 };
 
 
-// Initiliaze Utils Function
-require('./util')(dependencies).init(app, function (err) {
-    if (err) {
-        throw err;
-    }
+// Parse POST data through bodyParser
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 
-    // Parse POST data through bodyParser
-    app.use(bodyParser.urlencoded({
-        extended: true
-    }));
+// Use gzip compression
+app.use(compress());
 
 
-    // Static files Serve Directly
-    app.use(config.baseurl + '/statics', express.static(config.paths.static));
+// Static files Serve Directly
+app.use(config.baseurl + '/statics', express.static(config.paths.static));
 
 
-    // Declare Mounting Points
-    var handlers = [
-        {
-            'mount': config.baseurl + '/',
-            'file' : __dirname + '/handlers/home.js'
-        }
-    ];
-
-    // Create use for each Mounting point
-    _.each(handlers, function (h) {
-        app.use(h.mount, require(h.file)(dependencies));
-    });
-
-
-    // listen on port from config
-    app.listen(config.server.port);
+// Create Express handlebar instance
+var hbs = exphbs.create({
+    layoutsDir    :  config.paths.layout,
+    defaultLayout : 'master',
+    extname       : '.hbs'
 });
+
+
+// Initialize engine
+app.engine('.hbs', hbs.engine);
+
+
+// Set engine
+app.set('view engine', '.hbs');
+
+
+// Declare Mounting Points
+var handlers = [
+    {
+        'mount': config.baseurl + '/',
+        'file' : __dirname + '/handlers/home.js'
+    }
+];
+
+
+// Create use for each Mounting point
+_.each(handlers, function (h) {
+    app.use(h.mount, require(h.file)(dependencies));
+});
+
+
+// listen on port from config
+app.listen(config.server.port);
+console.log('Listening on port: ' + config.server.port);

@@ -9,15 +9,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{title}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href='http://fonts.googleapis.com/css?family=Lato'>
-    <link rel="stylesheet" type="text/css" href='//fonts.googleapis.com/css?family=Varela+Round'>
-    <link rel="stylesheet" type="text/css" href="{{baseurl}}/statics/css/foundation.min.css">
-    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-
-    {{{css}}}
-
-    <link rel="stylesheet" type="text/css" href="{{baseurl}}/statics/css/app.css">
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.min.js"></script>
 </head>
 <body>
     <nav class="top-bar" data-topbar>
@@ -31,7 +22,7 @@
     <div class="row main-content">
         <div class="small-12 columns">
 
-            {{{content}}}
+            {{{body}}}
 
         </div>
     </div> <!-- /.main-content -->
@@ -40,11 +31,22 @@
         <a href="https://twitter.com/ragij" title="Jigar Jain" target="_blank"><i class="fa fa-twitter"></i></a>
     </footer>
 
+
+    <link rel="stylesheet" type="text/css" href='//fonts.googleapis.com/css?family=Lato'>
+    <link rel="stylesheet" type="text/css" href='//fonts.googleapis.com/css?family=Varela+Round'>
+    <link rel="stylesheet" type="text/css" href="{{baseurl}}/statics/css/foundation.min.css">
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    {{#each css}}
+    <link rel="stylesheet" type="text/css" href="{{this}}">
+    {{/each}}
+    <link rel="stylesheet" type="text/css" href="{{baseurl}}/statics/css/app.css">
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{baseurl}}/statics/js/foundation.min.js"></script>
-
-    {{{js}}}
-
+    {{#each js}}
+    <script type="text/javascript" src="{{this}}"></script>
+    {{/each}}
     <script type="text/javascript" src="{{baseurl}}/statics/js/app.js"></script>
 </body>
 </html>

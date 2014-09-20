@@ -2,180 +2,92 @@ module.exports = function (deps) {
     var countTags  = require('../lib/countTags')(),
         express    = require('express'),
         _          = require('lodash'),
-        shortId    = require('shortid'),
         router     = express.Router(),
-        collection = deps.db.collection('links');
+        wrap       = require('co-express'),
+        validator  = require('validator'),
+        links      = require('../models/links')(deps);
 
 
     /**
      * Serves HomePage on GET request
      */
     router.get('/', function (req, res) {
-        var opts = {
-            'title': 'Count Tags',
-            'baseurl': deps.cfg.baseurl
+        var pageData = {
+            'title': 'Parse my page',
+            'baseurl': deps.cfg.baseurl,
         };
 
-        var file = 'index.tmpl';
-
-        deps.util.layout.subcontent(file, {})
-            .then(function(subcontent){
-                return deps.util.layout.master(subcontent, opts)
-                    .then(function (output) {
-                        res.send(output);
-                    });
-
-            })
-            .catch(function (err) {
-                res.send(err);
-            });
+        res.render('index', pageData);
     });
 
     /**
      * Looks for POST request (URL submission)
      */
-    router.post('/', function (req, res) {
-        var url = req.body.url;
-        var op = {};
-        if(url) {
-            countTags.parse(url, function (err, data) {
-                if(err) {
-                    op = {
-                        code: 0,
-                        msg: 'Something went wrong'
-                    };
-                    res.send(op);
-                } else {
-                    var dbData = {
-                        'url': url,
-                        'tagCount': data
-                    };
+    router.post('/', wrap(function* (req, res, next) {
+        try {
+            var op = null;
 
-                    collection.findOne({
-                        url: dbData.url
-                    }, function(err, doc) {
+            if (!validator.isURL(req.body.url, {'require_protocol': true})) {
+                op = {
+                    code: 0,
+                    msg: 'URL is not valid'
+                };
+                res.send(op);
+                return;
+            }
 
-                        if(err) {
-                            throw err;
-                        }
+            var link = new links.Link();
+            link.parseUrl = req.body.url;
+            link.parsedHtml = yield countTags.parse(link.parseUrl);
 
-                        if(doc !== null) {
-                            // Same URL already exist. Hence Update
-                            collection.update(
-                                {url  : dbData.url},
-                                {$set : dbData},
-                                function (err, uDoc) {
-                                    if(err) {
-                                        op = {
-                                            code: 0,
-                                            msg: 'Something went wrong'
-                                        };
-                                    } else {
-                                        op = {
-                                            code: 1,
-                                            url: doc.shortLink
-                                        };
-                                    }
-                                    res.send(op);
-                            });
-                        } else {
-                            // New URL, So Insert
-                            dbData.shortLink = shortId.generate();
-                            collection.insert(
-                                dbData,
-                                function (err, iDoc) {
-                                    if(err) {
-                                        op = {
-                                            code: 0,
-                                            msg: 'Something went wrong'
-                                        };
-                                    } else {
-                                        op = {
-                                            code: 1,
-                                            url: dbData.shortLink
-                                        };
-                                    }
-                                    res.send(op);
-                            });
-                        }
-                    });
-                }
-            });
-        } else {
+            yield links.Repo.add(link);
+
             op = {
-                code: 0,
-                msg: 'No Url specified'
+                code: 1,
+                url: link.slug
             };
             res.send(op);
+        } catch(e) {
+            next(e);
         }
-    });
+    }));
 
     /**
      * Looks for GET request (Result Page)
      */
-    router.get('/:shortLink', function(req, res) {
-        var shortLink = req.params.shortLink;
-        var file      = null;
+    router.get('/:slug', wrap(function* (req, res, next) {
+        try {
+            var link = yield links.Repo.getBySlug(req.params.slug);
 
-        collection.findOne({
-            shortLink: shortLink
-        }, function (err, doc) {
-            if(err || doc === null) {
-                var opt = {
-                    'title': 'You lost bro?',
-                };
-                file    = 'templates/_404.tmpl';
-
-                res.status(404);
-
-                deps.util.layout.subcontent(file, {})
-                    .then(function(subcontent){
-                        return deps.util.layout.master(subcontent, opts)
-                            .then(function (output) {
-                                res.send(output);
-                            });
-                    })
-                    .catch(function (err) {
-                        res.send(err);
-                    });
-
-            } else {
-                var opts = {
-                    'title': 'CountTags',
-                    'baseurl': deps.cfg.baseurl,
-                    'js': [
-                        deps.cfg.baseurl + '/statics/thirdparty/footable/js/footable.js',
-                        deps.cfg.baseurl + '/statics/thirdparty/footable/js/footable.sortable.js',
-                        deps.cfg.baseurl + '/statics/thirdparty/footable/js/footable.paginate.js',
-                        deps.cfg.baseurl + '/statics/thirdparty/footable/js/footable.filter.js',
-                    ],
-                    'css' : [
-                        deps.cfg.baseurl + '/statics/thirdparty/footable/css/footable.sortable-0.1.css',
-                    ]
-                };
-
-                var pageData       = doc;
-                pageData.shareLink = deps.cfg.mainurl + '/' + doc.shortLink;
-                file               = 'result.tmpl';
-
-                _.forEach(pageData.tagCount, function(item, index) {
-                    pageData.tagCount[index].classes = item.classes.join(', ');
-                    pageData.tagCount[index].ids = item.ids.join(', ');
-                });
-
-                deps.util.layout.subcontent(file, pageData)
-                    .then(function(subcontent){
-                        return deps.util.layout.master(subcontent, opts)
-                            .then(function (output) {
-                                res.send(output);
-                            });
-                    })
-                    .catch(function (err) {
-                        res.send(err);
-                    });
+            if (!link) {
+                return next();
             }
-        });
-    });
+
+            var pageData = {
+                'link': link,
+                'title': 'CountTags',
+                'baseurl': deps.cfg.baseurl,
+                'js': [
+                    deps.cfg.baseurl + '/statics/thirdparty/footable/js/footable.js',
+                    deps.cfg.baseurl + '/statics/thirdparty/footable/js/footable.sortable.js',
+                    deps.cfg.baseurl + '/statics/thirdparty/footable/js/footable.paginate.js',
+                    deps.cfg.baseurl + '/statics/thirdparty/footable/js/footable.filter.js',
+                ],
+                'css' : [
+                    deps.cfg.baseurl + '/statics/thirdparty/footable/css/footable.sortable-0.1.css',
+                ]
+            };
+
+            _.each(pageData.link.parsedHtml, function(item) {
+                item.classes = item.classes.join(', ');
+                item.ids = item.ids.join(', ');
+            });
+
+            res.render('result', pageData);
+        } catch(e) {
+            next(e);
+        }
+    }));
 
     return router;
 };
