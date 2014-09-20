@@ -1,6 +1,9 @@
 #CountTags
-This was a small project built to get myself familiarize with Node.js & other various libraries & concept.
-The application is small & easy but it uses various JS concepts like Promises, Asynchronous Parallel code execution etc
+Given a URL, this app will do the following things
+- Parse the entire DOM & count the number of occurences of each HTML tag.
+- Find all the Classes & Ids used for each HTML tag
+- Parse the CSS files that are linked by this page (Omits google fonts)
+- Find all values that are assigned for property `color`, `font-size` & `font-family`
 
 ##Pre-requisites
 Following components need to be installed
@@ -18,7 +21,7 @@ Following components need to be installed
 
 - Fire up the application
 
-    `npm start` OR `node index.js`
+    `npm start` OR `node --harmony index.js`
 
 - Check in browser by going to http://localhost:portnumber
 

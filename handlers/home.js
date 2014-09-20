@@ -1,11 +1,11 @@
 module.exports = function (deps) {
-    var countTags  = require('../lib/countTags')(),
+    var wrap       = require('co-express'),
         express    = require('express'),
         _          = require('lodash'),
-        router     = express.Router(),
-        wrap       = require('co-express'),
         validator  = require('validator'),
-        links      = require('../models/links')(deps);
+        countTags  = require('../lib/countTags')(),
+        links      = require('../models/links')(deps),
+        router     = express.Router();
 
 
     /**

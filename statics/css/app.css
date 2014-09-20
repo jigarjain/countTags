@@ -123,16 +123,19 @@ h6 {
   font-family: attr(data-font-family);
 }
 /** 404 **/
-.page-404 {
+.page-404,
+.page-500 {
   margin-top: 50px;
   text-align: center;
 }
-.page-404 .fa {
+.page-404 .fa,
+.page-500 .fa {
   font-size: 80px;
   line-height: 150px;
   color: #bdc3c7;
 }
-.page-404 h2 {
+.page-404 h2,
+.page-500 h2 {
   color: #bdc3c7;
 }
 /** Footer **/

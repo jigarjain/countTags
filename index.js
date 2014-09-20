@@ -67,6 +67,24 @@ _.each(handlers, function (h) {
     app.use(h.mount, require(h.file)(dependencies));
 });
 
+// Show Error
+app.use(function (err, req, res, next) {
+    if (!err) {
+        return next();
+    }
+    res.status(500);
+    res.render('templates/500', {
+        'title': 'Something messed up'
+    });
+});
+
+app.use(function (req, res) {
+    res.status(404);
+    res.render('templates/404', {
+        'title': 'You lost bro?'
+    });
+});
+
 
 // listen on port from config
 app.listen(config.server.port);
