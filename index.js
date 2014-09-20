@@ -29,6 +29,14 @@ app.use(compress());
 app.use(config.baseurl + '/statics', express.static(config.paths.static));
 
 
+// Setting local variables
+app.use(function(req, res, next){
+    res.locals.baseurl = dependencies.cfg.baseurl;
+    res.locals.version = require('./package.json').version;
+    next();
+});
+
+
 // Create Express handlebar instance
 var hbs = exphbs.create({
     layoutsDir    :  config.paths.layout,

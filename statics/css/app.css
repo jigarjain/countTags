@@ -1,3 +1,6 @@
+*:focus {
+  outline: none;
+}
 /** Common CSS **/
 body {
   font-family: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -74,6 +77,50 @@ h6 {
   font-size: 16px;
   line-height: 24px;
   vertical-align: top;
+}
+.result-page .tabs {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+.result-page .tabs dd {
+  display: table-cell;
+  width: 100%;
+  float: none;
+}
+.result-page .tabs dd,
+.result-page .tabs dd a {
+  background-color: #F5F5F5;
+}
+.result-page .tabs dd.active,
+.result-page .tabs dd.active a {
+  background-color: #E1E1E1;
+}
+.result-page .tabs-content {
+  padding: 10px;
+  border: 1px solid #E1E1E1;
+}
+.result-page .css-tab [class^="prop-"] ul {
+  margin: 0;
+  list-style: none;
+}
+.result-page .css-tab [class^="prop-"] ul li {
+  display: inline;
+}
+.result-page .css-tab [class^="prop-"] ul li span {
+  padding: 5px 10px;
+}
+.result-page .css-tab .prop-color ul {
+  background-color: #F1F4F9;
+}
+.result-page .css-tab .prop-font-size span {
+  font-size: attr(data-font-size);
+}
+.result-page .css-tab .prop-font-family ul li {
+  display: block;
+}
+.result-page .css-tab .prop-font-family span {
+  font-family: attr(data-font-family);
 }
 /** 404 **/
 .page-404 {

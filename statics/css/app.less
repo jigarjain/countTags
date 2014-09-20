@@ -4,6 +4,11 @@
 @primary-color : #16a085;
 @error-color   : #e74c3c;
 
+* {
+    &:focus {
+        outline: none;
+    }
+}
 /** Common CSS **/
 
 body {
@@ -91,6 +96,75 @@ h1, h2, h3, h4, h5, h6 {
             font-size: 16px;
             line-height: 24px;
             vertical-align: top;
+        }
+    }
+
+    .tabs {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+
+        dd {
+            display: table-cell;
+            width: 100%;
+            float: none;
+
+            & , a {
+                background-color: #F5F5F5;
+            }
+
+            &.active {
+                &, a {
+                    background-color: #E1E1E1;
+                }
+            }
+        }
+    }
+
+    .tabs-content {
+        padding: 10px;
+        border: 1px solid #E1E1E1;
+    }
+
+    .css-tab {
+
+        [class^="prop-"] {
+            ul {
+                margin: 0;
+                list-style: none;
+
+                li {
+                    display: inline;
+
+                    span {
+                        padding: 5px 10px;
+                    }
+                }
+            }
+        }
+
+        .prop-color {
+            ul {
+                background-color: #F1F4F9;
+            }
+        }
+
+        .prop-font-size {
+            span {
+                font-size: attr(data-font-size);
+            }
+        }
+
+        .prop-font-family {
+            ul {
+                li {
+                    display: block;
+                }
+            }
+
+            span {
+                font-family: attr(data-font-family);
+            }
         }
     }
 }

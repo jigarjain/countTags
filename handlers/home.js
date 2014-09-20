@@ -13,8 +13,7 @@ module.exports = function (deps) {
      */
     router.get('/', function (req, res) {
         var pageData = {
-            'title': 'Parse my page',
-            'baseurl': deps.cfg.baseurl,
+            'title': 'Parse my page'
         };
 
         res.render('index', pageData);
@@ -67,7 +66,6 @@ module.exports = function (deps) {
             var pageData = {
                 'link': link,
                 'title': 'CountTags',
-                'baseurl': deps.cfg.baseurl,
                 'js': [
                     deps.cfg.baseurl + '/statics/thirdparty/footable/js/footable.js',
                     deps.cfg.baseurl + '/statics/thirdparty/footable/js/footable.sortable.js',
