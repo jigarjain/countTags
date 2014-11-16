@@ -25,8 +25,12 @@ app.use(bodyParser.urlencoded({
 app.use(compress());
 
 
+// Trust Proxy
+app.enable('trust proxy');
+
+
 // Static files Serve Directly
-app.use(config.baseurl + '/statics', express.static(config.paths.static));
+app.use('/statics', express.static(config.paths.static));
 
 
 // Setting local variables
@@ -56,7 +60,7 @@ app.set('view engine', '.hbs');
 // Declare Mounting Points
 var handlers = [
     {
-        'mount': config.baseurl + '/',
+        'mount': '/',
         'file' : __dirname + '/handlers/home.js'
     }
 ];

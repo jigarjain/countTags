@@ -67,10 +67,10 @@ module.exports = function (deps) {
                 'link': link,
                 'title': 'CountTags',
                 'js': [
-                    deps.cfg.baseurl + '/statics/thirdparty/footable/js/footable.js',
-                    deps.cfg.baseurl + '/statics/thirdparty/footable/js/footable.sortable.js',
-                    deps.cfg.baseurl + '/statics/thirdparty/footable/js/footable.paginate.js',
-                    deps.cfg.baseurl + '/statics/thirdparty/footable/js/footable.filter.js',
+                    '/statics/thirdparty/footable/js/footable.js',
+                    '/statics/thirdparty/footable/js/footable.sortable.js',
+                    '/statics/thirdparty/footable/js/footable.paginate.js',
+                    '/statics/thirdparty/footable/js/footable.filter.js',
                 ],
                 'css' : [
                     deps.cfg.baseurl + '/statics/thirdparty/footable/css/footable.sortable-0.1.css',
