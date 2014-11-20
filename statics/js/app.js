@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
     $(document).foundation();
+    var BASE_URL = $('body').data('baseurl');
 
     $('.url-form').on('submit', function(e) {
         e.preventDefault();
@@ -8,13 +9,13 @@ $(document).ready(function() {
         if(url.length !== 0) {
             $('.url-form').find('button').html('<i class="fa fa-spin fa-spinner"></i> Fetching');
             $.ajax({
-                url: '/',
+                url: BASE_URL + '/',
                 method: 'POST',
                 dataType: 'json',
                 data: {url: url}
             }).done(function(resp) {
                 if(resp.code === 1) {
-                    location.href='/' + resp.url;
+                    location.href= BASE_URL + '/' + resp.url;
                 } else {
                     $('.error-msg').show();
                 }

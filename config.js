@@ -1,7 +1,6 @@
 module.exports = {
     'env' : 'development',
-    'baseurl' : '',
-    'mainurl' : 'http://54.191.205.94',
+    'baseurl' : process.BASEURL || 'http://jigarjain.com/apps/countTags',
     'mongo' : {
         'db' : 'countTags'
     },
