@@ -10,6 +10,7 @@ Following components need to be installed
 
  * Node.js 0.11 (Use NVM)
  * MongoDB 2.6 or above
+ * Forever
 
 ## Installation Steps
 
@@ -27,8 +28,4 @@ Following components need to be installed
 
 
 ## Demo
-[http://54.191.205.94/](http://54.191.205.94/)
-
-
-## Contribute
-I think you already know how to contribute. Fork & Pull Request
+[http://jigarjain.com/apps/countTags](http://jigarjain.com/apps/countTags)
